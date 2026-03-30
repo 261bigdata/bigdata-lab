@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  bigdata-lab:
+    build: .
+    container_name: bigdata-lab
+    ports:
+      - "8888:8888"
+      - "4040:4040"
+    volumes:
+      - ../notebooks:/opt/notebooks
+      - ../data:/opt/data
+      - ../artifacts:/opt/artifacts
