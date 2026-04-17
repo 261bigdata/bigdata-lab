@@ -1,0 +1,10 @@
+services:
+  bigdata-lab:
+    networks:
+      - default
+      - ec-kafka-dev-net
+
+networks:
+  ec-kafka-dev-net:
+    external: true
+    name: ec-kafka-dev-net

@@ -1,52 +1,115 @@
 # bigdata-lab
 
-Este repositorio contiene materiales, notebooks y recursos para prácticas y aprendizaje de arquitecturas y fundamentos de Big Data.
+Repositorio de laboratorio para trabajar con notebooks, PySpark, datos de ejemplo y prácticas de procesamiento Big Data.
+
+Su papel es servir como entorno de trabajo para ejercicios de fundamentos, ETL y streaming, tanto de forma independiente como integrado con Kafka cuando la práctica lo requiera.
 
 ## Estructura del proyecto
 
-- **artifacts/**: Archivos generados por procesos o ejecuciones.
-  - **output/**: Resultados de procesos, como archivos de éxito (_SUCCESS).
-- **data/**: Conjunto de datos de ejemplo para prácticas y ejercicios.
-  - `biblia_ntv_.csv`, `clientes.csv`, `ventas.csv`
-- **docker/**: Archivos para la configuración y despliegue de entornos con Docker.
-  - `docker-compose.yml`, `Dockerfile`
-- **notebooks/**: Notebooks y scripts Python para prácticas y experimentos.
-  - `01_arquitecturas_big_data.ipynb`, `02_fundamentos_practica.ipynb`, `03_etl_spark.ipynb`, etc.
+- `artifacts/`: archivos generados por procesos o ejecuciones
+- `data/`: datos de ejemplo para prácticas y ejercicios
+- `docker/`: archivos para levantar el entorno con Docker
+- `notebooks/`: notebooks y scripts Python para prácticas y experimentos
 
 ## Requisitos
 
-- Python 3.x
 - Docker
-- Apache Spark (opcional, recomendado para notebooks de ETL)
+- Python local es opcional
+- Apache Spark local es opcional si no usas Docker, porque el contenedor ya incluye `pyspark`
 
 ## Uso rápido
 
-1. Clona este repositorio:
-   ```bash
-   git clone <url-del-repo>
-   ```
-2. Instala los requisitos necesarios (puedes usar Docker para facilitar la configuración).
-3. Abre los notebooks en Jupyter o VS Code para comenzar a trabajar.
+Ubícate en:
 
-## Levantar el servidor con Docker
+```powershell
+cd C:\261bigdata\bigdata-lab\docker
+```
+
+Levanta el laboratorio base:
+
+```bash
+docker compose up --build
+```
+
+Luego accede a:
+
+- Jupyter: `http://localhost:8888`
+- Spark UI: `http://localhost:4040`
+
+## Levantar el laboratorio con Docker
 
 Desde la carpeta `docker/`, ejecuta:
 
 ```bash
-# Construir la imagen (solo la primera vez o si hay cambios)
-docker compose build
-
-# Levantar el servidor
-# (esto inicia Jupyter Notebook en http://localhost:8888)
-docker compose up
+docker compose up --build
 ```
 
-Esto montará los notebooks, datos y artefactos en el contenedor y expondrá los puertos 8888 (Jupyter) y 4040 (Spark UI).
+Esto monta en el contenedor:
+
+- notebooks en `/opt/notebooks`
+- datos en `/opt/data`
+- artefactos en `/opt/artifacts`
+
+Y expone los puertos:
+
+- `8888`: Jupyter
+- `4040`: Spark UI
+
+## Modos de uso
+
+### Modo 1. Laboratorio independiente
+
+Usa:
+
+```bash
+docker compose up --build
+```
+
+Este modo sirve para:
+
+- notebooks de fundamentos
+- ETL con Spark
+- ejercicios con archivos locales
+- pruebas sin depender de Kafka
+
+### Modo 2. Laboratorio integrado con Kafka
+
+Si quieres conectar `bigdata-lab` al Kafka de `dev`, primero asegúrate de que exista la red externa `ec-kafka-dev-net` y luego ejecuta:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.kafka.yml up --build
+```
+
+Este modo sirve para:
+
+- consumir eventos Kafka desde Spark
+- probar flujos de streaming
+- trabajar con el broker interno:
+
+```text
+ec-kafka:9092
+```
+
+## Notebooks principales
+
+En `notebooks/` encontrarás, entre otros:
+
+- `01_arquitecturas_big_data.ipynb`
+- `02_fundamentos_practica.ipynb`
+- `03_etl_spark.ipynb`
+- `04_hdfs_formatos.ipynb`
+- `07_spark_streaming_consumer_ordenes.ipynb`
+
+## Archivos Docker
+
+En la carpeta `docker/` se usan estos archivos:
+
+- `docker-compose.yml`: compose base para levantar `bigdata-lab` de forma independiente
+- `docker-compose.kafka.yml`: override opcional para conectar `bigdata-lab` al Kafka de `dev`
+- `Dockerfile`: imagen base del contenedor
 
 ## Créditos
 
 Material de apoyo para cursos y talleres de Big Data.
 
----
-
-Para dudas o sugerencias, abre un issue o contacta al responsable del curso.
+Para dudas o sugerencias, abre un issue o contacta al responsable del curso o con Angel Sullon

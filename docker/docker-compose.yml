@@ -1,9 +1,7 @@
-version: "3.9"
-
 services:
   bigdata-lab:
     build: .
-    container_name: bigdata-lab
+    restart: unless-stopped
     ports:
       - "8888:8888"
       - "4040:4040"
