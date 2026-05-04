@@ -1,2 +1,2 @@
 v1
-{"path":"file:///opt/artifacts/output/orden_eventos_parquet/part-00000-5b29b0c0-b0bb-4763-b971-bd00c4ff2084-c000.snappy.parquet","size":1904,"isDir":false,"modificationTime":1776463503403,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///opt/artifacts/output/orden_eventos_parquet/part-00000-257b8454-6ff7-47a2-9481-2aea0449534a-c000.snappy.parquet","size":3745,"isDir":false,"modificationTime":1777886190989,"blockReplication":1,"blockSize":33554432,"action":"add"}

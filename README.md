@@ -99,6 +99,7 @@ En `notebooks/` encontrarás, entre otros:
 - `03_etl_spark.ipynb`
 - `04_hdfs_formatos.ipynb`
 - `07_spark_streaming_consumer_ordenes.ipynb`
+- `08_observabilidad_pipeline_kafka_spark.ipynb`
 
 ## Archivos Docker
 
