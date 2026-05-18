@@ -101,6 +101,8 @@ En `notebooks/` encontrarás, entre otros:
 - `07_spark_streaming_consumer_ordenes.ipynb`
 - `08_observabilidad_pipeline_kafka_spark.ipynb`
 - `08_3_ml_temp_latency.ipynb`
+- `09_ml_distribuido_regresion_mllib.ipynb`
+- `10_series_tiempo_inferencia_spark.ipynb`
 
 ## Archivos Docker
 
